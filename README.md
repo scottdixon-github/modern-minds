@@ -1,8 +1,23 @@
-# Welcome to your Expo app 👋
+# Modern Minds: Ancient Wisdom for Modern Life
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Modern Minds is a React Native application that utilizes ancient philosophies to help users make better decisions, optimize their daily experience, and track their habits. The app features engaging animations inspired by DuoLingo to help users concentrate and achieve more in their daily lives.
 
-## Get started
+## Features
+
+- **Daily Wisdom**: Explore teachings from ancient philosophers and apply them to your modern life.
+- **Habit Tracking**: Build better habits with our engaging tracking system inspired by ancient disciplines.
+- **Decision Making**: Use ancient decision-making frameworks to navigate modern challenges.
+- **Personalized Profile**: Customize your experience and track your progress.
+- **Animated Mascot**: Meet Sophia, your philosophical guide through the app.
+
+## Technologies Used
+
+- React Native with Expo
+- React Navigation
+- React Native Reanimated for fluid animations
+- TypeScript for type safety
+
+## Getting Started
 
 1. Install dependencies
 
@@ -13,38 +28,36 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 2. Start the app
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Philosophical Frameworks
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+The app incorporates wisdom from various philosophical traditions:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Stoicism**: Focus on what you can control and develop resilience.
+- **Buddhism**: Find balance and mindfulness in your daily life.
+- **Taoism**: Align with the natural flow and practice effortless action.
+- **Confucianism**: Develop proper conduct and social harmony.
 
-## Get a fresh project
+## Animated Mascot
 
-When you're ready, run:
+Sophia, our owl mascot, represents wisdom and guides users through the app. She changes moods based on context:
 
-```bash
-npm run reset-project
-```
+- **Happy**: Default state, welcoming users.
+- **Thinking**: When contemplating philosophical questions.
+- **Excited**: When users make progress or discover new insights.
+- **Meditating**: During moments of reflection and decision-making.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Screenshots
 
-## Learn more
+(Screenshots will be added soon)
 
-To learn more about developing your project with Expo, look at the following resources:
+## License
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Join the community
+## Acknowledgments
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Inspired by ancient philosophical traditions
+- Animation concepts inspired by DuoLingo's engaging user experience
