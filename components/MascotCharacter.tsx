@@ -33,6 +33,8 @@ export function MascotCharacter({
   const wingFlap = useSharedValue(0);
   const headTilt = useSharedValue(0);
   const floatY = useSharedValue(0);
+  const floatingElement1Y = useSharedValue(0);
+  const floatingElement2Y = useSharedValue(0);
   
   // Use refs to track animation state and prevent memory leaks
   const isComponentMounted = useRef(true);
@@ -114,6 +116,25 @@ export function MascotCharacter({
         -1, // Infinite repetitions
         true // Reverse
       );
+      
+      // Floating elements animations
+      floatingElement1Y.value = withRepeat(
+        withSequence(
+          withTiming(-10, { duration: 1500 }),
+          withTiming(0, { duration: 1500 })
+        ),
+        -1,
+        true
+      );
+      
+      floatingElement2Y.value = withRepeat(
+        withSequence(
+          withTiming(-8, { duration: 2000 }),
+          withTiming(0, { duration: 2000 })
+        ),
+        -1,
+        true
+      );
     }
     
     // Cleanup function to cancel animations and prevent memory leaks
@@ -124,6 +145,8 @@ export function MascotCharacter({
       cancelAnimation(wingFlap);
       cancelAnimation(headTilt);
       cancelAnimation(floatY);
+      cancelAnimation(floatingElement1Y);
+      cancelAnimation(floatingElement2Y);
     };
   }, [mood]);
   
@@ -179,20 +202,23 @@ export function MascotCharacter({
     };
   });
   
-  // Determine expression based on mood
-  const getExpression = () => {
-    switch (mood) {
-      case 'thinking':
-        return '🤔';
-      case 'excited':
-        return '😃';
-      case 'meditating':
-        return '😌';
-      case 'happy':
-      default:
-        return '😊';
-    }
-  };
+  const floatingElement1Style = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { scale: size / 120 * 0.8 },
+        { translateY: floatingElement1Y.value }
+      ]
+    };
+  });
+  
+  const floatingElement2Style = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { scale: size / 120 * 0.8 },
+        { translateY: floatingElement2Y.value }
+      ]
+    };
+  });
   
   // Scale all dimensions based on the size prop
   const scale = size / 120;
@@ -207,21 +233,9 @@ export function MascotCharacter({
               styles.floatingElement, 
               { 
                 top: -size * 0.2, 
-                left: -size * 0.2,
-                transform: [
-                  { scale: scale * 0.8 },
-                  { 
-                    translateY: withRepeat(
-                      withSequence(
-                        withTiming(-10, { duration: 1500 }),
-                        withTiming(0, { duration: 1500 })
-                      ),
-                      -1,
-                      true
-                    ) 
-                  }
-                ]
-              }
+                left: -size * 0.2
+              },
+              floatingElement1Style
             ]}
           >
             <ThemedText style={{ fontSize: 20 * scale }}>✨</ThemedText>
@@ -231,21 +245,9 @@ export function MascotCharacter({
               styles.floatingElement, 
               { 
                 top: size * 0.1, 
-                right: -size * 0.15,
-                transform: [
-                  { scale: scale * 0.8 },
-                  { 
-                    translateY: withRepeat(
-                      withSequence(
-                        withTiming(-8, { duration: 2000 }),
-                        withTiming(0, { duration: 2000 })
-                      ),
-                      -1,
-                      true
-                    ) 
-                  }
-                ]
-              }
+                right: -size * 0.15
+              },
+              floatingElement2Style
             ]}
           >
             <ThemedText style={{ fontSize: 20 * scale }}>☯️</ThemedText>
@@ -358,9 +360,44 @@ export function MascotCharacter({
             ]}
           />
           
-          {/* Expression */}
+          {/* Tusks and Mouth */}
           <View style={styles.expressionContainer}>
-            <ThemedText style={{ fontSize: 16 * scale }}>{getExpression()}</ThemedText>
+            <View style={styles.mouthContainer}>
+              {/* Left Tusk */}
+              <View 
+                style={[
+                  styles.tusk, 
+                  styles.leftTusk, 
+                  { 
+                    width: size * 0.05, 
+                    height: size * 0.08,
+                  }
+                ]}
+              />
+              
+              {/* Mouth */}
+              <View 
+                style={[
+                  styles.mouth, 
+                  { 
+                    width: size * 0.1, 
+                    height: size * 0.05,
+                  }
+                ]}
+              />
+              
+              {/* Right Tusk */}
+              <View 
+                style={[
+                  styles.tusk, 
+                  styles.rightTusk, 
+                  { 
+                    width: size * 0.05, 
+                    height: size * 0.08,
+                  }
+                ]}
+              />
+            </View>
           </View>
         </Animated.View>
       </Animated.View>
@@ -448,5 +485,31 @@ const styles = StyleSheet.create({
   floatingElement: {
     position: 'absolute',
     zIndex: 10,
-  }
+  },
+  mouthContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  mouth: {
+    backgroundColor: '#5D4037',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    height: 5,
+    marginBottom: 2,
+  },
+  tusk: {
+    backgroundColor: '#F5F5F5',
+    width: 5,
+    borderRadius: 3,
+    transform: [{ rotate: '10deg' }],
+  },
+  leftTusk: {
+    transform: [{ rotate: '-20deg' }],
+    marginRight: -2,
+  },
+  rightTusk: {
+    transform: [{ rotate: '20deg' }],
+    marginLeft: -2,
+  },
 });
